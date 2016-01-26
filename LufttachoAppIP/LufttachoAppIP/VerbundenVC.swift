@@ -17,7 +17,8 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
     @IBOutlet weak var VerbundenmitLabel: UILabel!
     @IBOutlet weak var Graph: LineChartView!
     var Characters = [CBCharacteristic]()
-    
+    var Entry : ChartDataEntry = ChartDataEntry()
+    var xStelle : Int = 0
     @IBAction func Disconnect(sender: AnyObject) {
         
         manager.cancelPeripheralConnection(PeripheralGerät!)
@@ -33,13 +34,13 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
             manager.delegate = self
             
             
+        
             
             
             
             
             
-            
-            
+            xStelle = 0
             
             
           // Beispiel Chart äußeres
@@ -57,7 +58,7 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
             let xAxis : ChartXAxis = Graph.xAxis
             xAxis.drawGridLinesEnabled = false
             xAxis.spaceBetweenLabels = 1
-            
+        
             
             let yAxis : ChartYAxis = Graph.leftAxis
             yAxis.setLabelCount(6, force: true)
@@ -72,7 +73,7 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
             Legende.enabled = false
             
             yAxis.drawLimitLinesBehindDataEnabled = true
-            
+        
             
         
       
@@ -80,13 +81,90 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
             Graph.backgroundColor? = UIColor.clearColor()
             Graph.gridBackgroundColor = UIColor.clearColor()
             Graph.xAxis.gridColor = UIColor.whiteColor()
-
-
-            
+        
+        
+                    // Daten für den Graph
+        
+                    let DataLineChart : LineChartData = LineChartData()
+        
+                    //Daten in den Graph geben
+        
+                    Graph.data = DataLineChart
+        
+                    //Legende
+        
+     
 
     }
     
- 
+ // Daten Einfügen
+    
+    func addEntry()
+    {
+        let Daten : LineChartData? = Graph.lineData
+        if Daten != nil
+        {
+            var set : LineChartDataSet? = Daten?.getDataSetByIndex(0) as? LineChartDataSet
+      
+            
+                if set == nil
+                {
+            set = createSet()
+                Daten?.addDataSet(set)
+                    
+            }
+            
+            for var Index = 0; Index < 4; Index++
+            {
+            
+               
+            Daten?.addXValue(XVariablenString[Index])
+                
+                
+            Entry = ChartDataEntry(value: Channel1Double[Index], xIndex: xStelle )
+            Daten?.addEntry(Entry, dataSetIndex: 0)
+            print("Entry : \(Entry)")
+            xStelle += 1
+            
+            }
+
+
+            
+            
+            
+            
+            Graph.notifyDataSetChanged()
+            
+            Graph.setVisibleXRange(minXRange: 60, maxXRange: 60)
+            
+            Graph.moveViewToX((Daten?.xValCount)! - 61)
+            
+            
+        }
+    }
+    
+
+    
+    func createSet() -> LineChartDataSet
+    {
+        let set : LineChartDataSet = LineChartDataSet(yVals: nil, label: "Daten")
+        //set.axisDependency = .Left
+       // set.axisDependency = .Left
+        //set.drawCubicEnabled = true
+        set.drawCirclesEnabled = false
+        
+        set.setColor(UIColor.redColor().colorWithAlphaComponent(0.5))
+        set.setCircleColor(UIColor.redColor())
+       // set.circleRadius = 0
+        
+        set.lineWidth = 2
+        set.fillAlpha = 65/255
+        set.drawCircleHoleEnabled = true
+        set.cubicIntensity = 2
+        
+        return set
+        
+    }
     
     override func viewDidAppear(animated: Bool) {
         manager.delegate = self
@@ -213,27 +291,23 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
                     
                 }
                 
-
-
+ 
+                addEntry()
                
                 print("Channel1 : \(Channel1)")
                 print("Channel2 : \(Channel2)")
                 print("XVariable für Channel 1 : \(XVariablenString)")
-                print("Channel 1 in DOuble: \(Channel1Double)")
+                print("Channel 1 in Double: \(Channel1Double)")
                 
                 
                 Beschriften()
+                
+                Graph.animate(xAxisDuration: 0.01, yAxisDuration: 0)
             }
         }
     }
     
 
-    
-    
-    
-
-    
-    
     
     
     
