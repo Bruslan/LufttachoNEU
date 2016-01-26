@@ -10,7 +10,7 @@
 		8918D59E1C43CC6400F63614 /* VerbundenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8918D59D1C43CC6400F63614 /* VerbundenVC.swift */; };
 		8918D5AD1C43F26700F63614 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8918D5A61C43EE2B00F63614 /* Charts.framework */; };
 		8918D5AE1C43F26700F63614 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8918D5A61C43EE2B00F63614 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8935A0351C55972700B44340 /* Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8935A0341C55972700B44340 /* Delegate.swift */; };
+		8935A0351C55972700B44340 /* MeinDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8935A0341C55972700B44340 /* MeinDelegate.swift */; };
 		8936386A1C45952B0045A1DC /* 5C.png in Resources */ = {isa = PBXBuildFile; fileRef = 893638691C45952B0045A1DC /* 5C.png */; };
 		8936386E1C45959F0045A1DC /* 5sdC.png in Resources */ = {isa = PBXBuildFile; fileRef = 8936386D1C45959F0045A1DC /* 5sdC.png */; };
 		897D84FE1C40778B008D5B32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897D84FD1C40778B008D5B32 /* AppDelegate.swift */; };
@@ -28,6 +28,7 @@
 		8995C81D1C499A7F0066DF66 /* TableviewCell.png in Resources */ = {isa = PBXBuildFile; fileRef = 8995C81C1C499A7F0066DF66 /* TableviewCell.png */; };
 		8995C81F1C499BAD0066DF66 /* Zelle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8995C81E1C499BAD0066DF66 /* Zelle.swift */; };
 		89C268B01C4EE22800D43DD5 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C268AF1C4EE22700D43DD5 /* Command.swift */; };
+		89E6D76A1C57ACB300895B6A /* DatenfürdenGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E6D7691C57ACB300895B6A /* DatenfürdenGraph.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,7 +94,7 @@
 		8918D59D1C43CC6400F63614 /* VerbundenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerbundenVC.swift; sourceTree = "<group>"; };
 		8918D59F1C43EE2B00F63614 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../ios-charts-master/Charts/Charts.xcodeproj"; sourceTree = "<group>"; };
 		8918D5B21C4406E500F63614 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
-		8935A0341C55972700B44340 /* Delegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Delegate.swift; sourceTree = "<group>"; };
+		8935A0341C55972700B44340 /* MeinDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeinDelegate.swift; sourceTree = "<group>"; };
 		893638691C45952B0045A1DC /* 5C.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5C.png; sourceTree = "<group>"; };
 		8936386D1C45959F0045A1DC /* 5sdC.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5sdC.png; sourceTree = "<group>"; };
 		897D84FA1C40778B008D5B32 /* LufttachoAppIP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LufttachoAppIP.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,13 +112,13 @@
 		897D85201C40778B008D5B32 /* LufttachoAppIPUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LufttachoAppIPUITests.swift; sourceTree = "<group>"; };
 		897D85221C40778B008D5B32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		897D852E1C4078E3008D5B32 /* FInalScan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FInalScan.png; sourceTree = "<group>"; };
-		897E8D001C5170350082E290 /* Header2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header2.h; sourceTree = "<group>"; };
 		8988630B1C4558B000A1C0FD /* SideBarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarTableViewController.swift; sourceTree = "<group>"; };
 		8988630C1C4558B000A1C0FD /* SideBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBar.swift; sourceTree = "<group>"; };
 		8995C8181C49990D0066DF66 /* Button132.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button132.png; sourceTree = "<group>"; };
 		8995C81C1C499A7F0066DF66 /* TableviewCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TableviewCell.png; sourceTree = "<group>"; };
 		8995C81E1C499BAD0066DF66 /* Zelle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Zelle.swift; sourceTree = "<group>"; };
 		89C268AF1C4EE22700D43DD5 /* Command.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
+		89E6D7691C57ACB300895B6A /* DatenfürdenGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DatenfürdenGraph.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,12 +184,11 @@
 				897D84FD1C40778B008D5B32 /* AppDelegate.swift */,
 				897D84FF1C40778B008D5B32 /* SuchenViewController.swift */,
 				8918D59D1C43CC6400F63614 /* VerbundenVC.swift */,
+				89E6D7691C57ACB300895B6A /* DatenfürdenGraph.swift */,
 				89C268AF1C4EE22700D43DD5 /* Command.swift */,
-				8935A0341C55972700B44340 /* Delegate.swift */,
+				8935A0341C55972700B44340 /* MeinDelegate.swift */,
 				8918D5B21C4406E500F63614 /* Header.h */,
-				897E8D001C5170350082E290 /* Header2.h */,
-				893638691C45952B0045A1DC /* 5C.png */,
-				8936386D1C45959F0045A1DC /* 5sdC.png */,
+				89E6D7681C57A9D200895B6A /* Bilder */,
 				8988630B1C4558B000A1C0FD /* SideBarTableViewController.swift */,
 				8988630C1C4558B000A1C0FD /* SideBar.swift */,
 				8995C8181C49990D0066DF66 /* Button132.png */,
@@ -196,7 +196,6 @@
 				897D85011C40778B008D5B32 /* Main.storyboard */,
 				8995C81E1C499BAD0066DF66 /* Zelle.swift */,
 				897D85071C40778B008D5B32 /* Assets.xcassets */,
-				897D852E1C4078E3008D5B32 /* FInalScan.png */,
 				897D85091C40778B008D5B32 /* LaunchScreen.storyboard */,
 				897D850C1C40778B008D5B32 /* Info.plist */,
 				897D85041C40778B008D5B32 /* LufttachoAppIP.xcdatamodeld */,
@@ -220,6 +219,16 @@
 				897D85221C40778B008D5B32 /* Info.plist */,
 			);
 			path = LufttachoAppIPUITests;
+			sourceTree = "<group>";
+		};
+		89E6D7681C57A9D200895B6A /* Bilder */ = {
+			isa = PBXGroup;
+			children = (
+				893638691C45952B0045A1DC /* 5C.png */,
+				8936386D1C45959F0045A1DC /* 5sdC.png */,
+				897D852E1C4078E3008D5B32 /* FInalScan.png */,
+			);
+			name = Bilder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -396,9 +405,10 @@
 				897D85061C40778B008D5B32 /* LufttachoAppIP.xcdatamodeld in Sources */,
 				8995C81F1C499BAD0066DF66 /* Zelle.swift in Sources */,
 				897D85001C40778B008D5B32 /* SuchenViewController.swift in Sources */,
-				8935A0351C55972700B44340 /* Delegate.swift in Sources */,
+				8935A0351C55972700B44340 /* MeinDelegate.swift in Sources */,
 				8918D59E1C43CC6400F63614 /* VerbundenVC.swift in Sources */,
 				897D84FE1C40778B008D5B32 /* AppDelegate.swift in Sources */,
+				89E6D76A1C57ACB300895B6A /* DatenfürdenGraph.swift in Sources */,
 				89C268B01C4EE22800D43DD5 /* Command.swift in Sources */,
 				8988630E1C4558B000A1C0FD /* SideBar.swift in Sources */,
 				8988630D1C4558B000A1C0FD /* SideBarTableViewController.swift in Sources */,

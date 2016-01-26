@@ -125,6 +125,7 @@ class SuchenViewController: UIViewController, UITableViewDataSource, UITableView
     }
 
     func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
+        
         print("Disconnected")
     }
     
@@ -155,7 +156,7 @@ class SuchenViewController: UIViewController, UITableViewDataSource, UITableView
         
 
         //cell.textLabel?.text = devices[indexPath.row] as String
-cell.LabelName.text = devices[indexPath.row] as String
+        cell.LabelName.text = devices[indexPath.row] as String
 
         return cell
     }
