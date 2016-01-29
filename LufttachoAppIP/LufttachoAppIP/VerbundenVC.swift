@@ -59,6 +59,7 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
             xAxis.drawGridLinesEnabled = false
             xAxis.spaceBetweenLabels = 1
         
+        
             
             let yAxis : ChartYAxis = Graph.leftAxis
             yAxis.setLabelCount(6, force: true)
@@ -68,6 +69,7 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
             yAxis.axisLineColor = UIColor.whiteColor()
             yAxis.removeAllLimitLines()
             Graph.rightAxis.enabled =  false
+        
             Graph.legend.enabled = false
             let Legende : ChartLegend = Graph.legend
             Legende.enabled = false
@@ -135,9 +137,9 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
             
             Graph.notifyDataSetChanged()
             
-            Graph.setVisibleXRange(minXRange: 60, maxXRange: 60)
+            Graph.setVisibleXRange(minXRange: 10, maxXRange: 10)
             
-            Graph.moveViewToX((Daten?.xValCount)! - 61)
+            Graph.moveViewToX((Daten?.xValCount)! - 21)
             
             
         }
@@ -149,18 +151,19 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
     {
         let set : LineChartDataSet = LineChartDataSet(yVals: nil, label: "Daten")
         //set.axisDependency = .Left
-       // set.axisDependency = .Left
-        //set.drawCubicEnabled = true
+        set.axisDependency = .Left
+        set.drawCubicEnabled = true
         set.drawCirclesEnabled = false
         
-        set.setColor(UIColor.redColor().colorWithAlphaComponent(0.5))
-        set.setCircleColor(UIColor.redColor())
+        set.setColor(UIColor.whiteColor().colorWithAlphaComponent(0.5))
+        set.setCircleColor(UIColor.whiteColor())
        // set.circleRadius = 0
         
         set.lineWidth = 2
         set.fillAlpha = 65/255
         set.drawCircleHoleEnabled = true
-        set.cubicIntensity = 2
+        set.cubicIntensity = 0.1
+        
         
         return set
         
@@ -287,17 +290,24 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
                 
                     // Die Eingehende Daten werden in dieser Funktion Umgewandelt und in Arrays (Channel1 und Channel2) aufgeteilt!
                     Command(Value)
-
+                    addEntry()
                     
                 }
                 
  
-                addEntry()
+                
                
                 print("Channel1 : \(Channel1)")
                 print("Channel2 : \(Channel2)")
                 print("XVariable für Channel 1 : \(XVariablenString)")
                 print("Channel 1 in Double: \(Channel1Double)")
+                print("Settings : \(Command1)")
+                print("Control: \(Control)")
+                
+                print("////////////////////////////////////////////")
+                print("////////////////////////////////////////////")
+                print("////////////////////////////////////////////")
+                
                 
                 
                 Beschriften()
