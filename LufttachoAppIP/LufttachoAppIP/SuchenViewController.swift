@@ -33,7 +33,8 @@ class SuchenViewController: UIViewController, UITableViewDataSource, UITableView
         Indikator.alpha = 0
 
         manager = CBCentralManager(delegate: self, queue: nil)
-        
+        devices.removeAll()
+        tableView.reloadData()
   
     }
     

@@ -14,11 +14,16 @@ var XVariablenString = [String]()
 
 class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate, ChartViewDelegate {
 
+    @IBOutlet weak var SliderAussehen: UISlider!
     @IBOutlet weak var VerbundenmitLabel: UILabel!
     @IBOutlet weak var Graph: LineChartView!
     var Characters = [CBCharacteristic]()
     var Entry : ChartDataEntry = ChartDataEntry()
+    var Schalter = true
+    
+    @IBOutlet weak var SwitschAussehn: UISwitch!
     var xStelle : Int = 0
+    var range : CGFloat = 10
     @IBAction func Disconnect(sender: AnyObject) {
         
         manager.cancelPeripheralConnection(PeripheralGerät!)
@@ -29,7 +34,8 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
     override func viewDidLoad() {
         
             super.viewDidLoad()
-
+        Channel1Aussehen.enabled = false
+        
             
             manager.delegate = self
             
@@ -54,7 +60,7 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
             Graph.setScaleEnabled(true)
             Graph.pinchZoomEnabled = true
             Graph.drawGridBackgroundEnabled = false
-            Graph.maxVisibleValueCount = 60  //es war auf 60
+            Graph.maxVisibleValueCount = Int(range)  //es war auf 60
             let xAxis : ChartXAxis = Graph.xAxis
             xAxis.drawGridLinesEnabled = false
             xAxis.spaceBetweenLabels = 1
@@ -66,7 +72,7 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
             yAxis.startAtZeroEnabled = false
             
             yAxis.drawGridLinesEnabled = false
-            yAxis.axisLineColor = UIColor.whiteColor()
+            yAxis.axisLineColor = UIColor.grayColor()
             yAxis.removeAllLimitLines()
             Graph.rightAxis.enabled =  false
         
@@ -82,7 +88,7 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
             Graph.invalidateIntrinsicContentSize()
             Graph.backgroundColor? = UIColor.clearColor()
             Graph.gridBackgroundColor = UIColor.clearColor()
-            Graph.xAxis.gridColor = UIColor.whiteColor()
+            Graph.xAxis.gridColor = UIColor.grayColor()
         
         
                     // Daten für den Graph
@@ -98,6 +104,42 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
      
 
     }
+    
+    
+    
+    @IBAction func Switsh(sender: AnyObject) {
+        
+        
+        
+    }
+    
+    
+    // XAchsen Verhältnisse verändern
+    
+    @IBAction func Slider(sender: AnyObject) {
+        
+        
+       if Channel1Double != []
+       {
+     let Slidervalue = SliderAussehen.value
+        
+        range = 1 + CGFloat(Slidervalue * 100)
+        let Daten : LineChartData? = Graph.lineData
+        let set = createSet()
+        Daten?.addDataSet(set)
+        Graph.notifyDataSetChanged()
+        
+        Graph.setVisibleXRange(minXRange: range, maxXRange: range)
+       
+        }
+        
+        
+    }
+    
+    
+    
+    
+    
     
  // Daten Einfügen
     
@@ -120,11 +162,23 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
             {
             
                
-            Daten?.addXValue(XVariablenString[Index])
+            Daten?.addXValue("") //XVariablenString[Index]
                 
+            if Schalter == true
                 
+            {
             Entry = ChartDataEntry(value: Channel1Double[Index], xIndex: xStelle )
+                }
+                    
+            else{
+                
+            Entry = ChartDataEntry(value: Channel2Double[Index], xIndex: xStelle )
+                
+                }
+                var EntryArray = [ChartDataEntry]()
+   
             Daten?.addEntry(Entry, dataSetIndex: 0)
+                
             print("Entry : \(Entry)")
             xStelle += 1
             
@@ -137,9 +191,9 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
             
             Graph.notifyDataSetChanged()
             
-            Graph.setVisibleXRange(minXRange: 10, maxXRange: 10)
+            Graph.setVisibleXRange(minXRange: range, maxXRange: range)
             
-            Graph.moveViewToX((Daten?.xValCount)! - 21)
+            Graph.moveViewToX((Daten?.xValCount)! - Int(range + 1))
             
             
         }
@@ -150,12 +204,13 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
     func createSet() -> LineChartDataSet
     {
         let set : LineChartDataSet = LineChartDataSet(yVals: nil, label: "Daten")
+        
         //set.axisDependency = .Left
         set.axisDependency = .Left
         set.drawCubicEnabled = true
         set.drawCirclesEnabled = false
         
-        set.setColor(UIColor.whiteColor().colorWithAlphaComponent(0.5))
+        set.setColor(UIColor.grayColor().colorWithAlphaComponent(0.5))
         set.setCircleColor(UIColor.whiteColor())
        // set.circleRadius = 0
         
@@ -320,10 +375,32 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
 
     
     
+    @IBOutlet weak var Channel2Aussehen: UIButton!
+    @IBOutlet weak var Channel1Aussehen: UIButton!
+   
+    
+    
+    @IBAction func Channel2Button(sender: AnyObject) {
+        
+        
+        Schalter = false
+        Channel2Aussehen.enabled = false
+        Channel1Aussehen.enabled = true
+        
+        
+    }
     
     
 
     
+    @IBAction func Channel1Button(sender: AnyObject) {
+        
+        Schalter = true
+        Channel1Aussehen.enabled = false
+        Channel2Aussehen.enabled = true
+        
+        
+    }
     
     
     

@@ -4,8 +4,8 @@ import UIKit
 var Command1 = Int16()
 var Channeleins = [NSData]()
 var Channelzwei = [NSData]()
-var Channel1 = [UInt16](count: 4, repeatedValue: 0)
-var Channel2 = [UInt16](count: 4, repeatedValue: 0)
+var Channel1 = [Int16](count: 4, repeatedValue: 0)
+var Channel2 = [Int16](count: 4, repeatedValue: 0)
 var Control = Int()
 
 var Channel11 = []
@@ -88,13 +88,14 @@ func Command (data: NSData)
         
         var double2 = Double(Channel1[i])
         double2 = double2/600
-        
+        var double3 = Double(Channel2[i])
         // Runde double2 auf 2 stellen nachm Komma!
         let double = Double(round(double2*100)/100)
-        
+        let doubleCh2 = Double(round(double3*100)/100)
         
         //adde die umgewandelte Zahlen in ein Array
         Channel1Double.insert(double, atIndex: i)
+        Channel2Double.insert(doubleCh2, atIndex: i)
         
         // Xvariable, welche unsere Zeit in ms angibt
         

@@ -191,8 +191,6 @@
 				89E6D7681C57A9D200895B6A /* Bilder */,
 				8988630B1C4558B000A1C0FD /* SideBarTableViewController.swift */,
 				8988630C1C4558B000A1C0FD /* SideBar.swift */,
-				8995C8181C49990D0066DF66 /* Button132.png */,
-				8995C81C1C499A7F0066DF66 /* TableviewCell.png */,
 				897D85011C40778B008D5B32 /* Main.storyboard */,
 				8995C81E1C499BAD0066DF66 /* Zelle.swift */,
 				897D85071C40778B008D5B32 /* Assets.xcassets */,
@@ -224,6 +222,8 @@
 		89E6D7681C57A9D200895B6A /* Bilder */ = {
 			isa = PBXGroup;
 			children = (
+				8995C81C1C499A7F0066DF66 /* TableviewCell.png */,
+				8995C8181C49990D0066DF66 /* Button132.png */,
 				893638691C45952B0045A1DC /* 5C.png */,
 				8936386D1C45959F0045A1DC /* 5sdC.png */,
 				897D852E1C4078E3008D5B32 /* FInalScan.png */,
