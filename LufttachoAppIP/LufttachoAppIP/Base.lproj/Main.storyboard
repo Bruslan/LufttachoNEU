@@ -430,21 +430,6 @@
                                 <exclude reference="vsq-sE-Rkn"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="Ag9-zj-CHc"/>
-                                <exclude reference="Ejw-Lp-WNG"/>
-                                <exclude reference="rYn-2x-Mto"/>
-                                <exclude reference="Vbm-l0-Z6L"/>
-                                <exclude reference="bpA-l2-img"/>
-                                <exclude reference="qcG-K1-2ei"/>
-                                <exclude reference="1Tp-Ao-1co"/>
-                                <exclude reference="5JC-Z6-JJI"/>
-                                <exclude reference="8F3-Yk-Wti"/>
-                                <exclude reference="Aoz-ye-afe"/>
-                                <exclude reference="QDd-j5-Ikb"/>
-                                <exclude reference="QPc-tN-Zod"/>
-                                <exclude reference="iUc-co-SXO"/>
-                                <exclude reference="CQu-37-Ex9"/>
-                                <exclude reference="d5f-QH-iaR"/>
                                 <exclude reference="TXU-98-XVe"/>
                                 <exclude reference="VMt-Uq-KOQ"/>
                                 <exclude reference="ebt-EL-e4c"/>
@@ -452,6 +437,21 @@
                                 <exclude reference="u4O-V3-Zk6"/>
                                 <exclude reference="StK-zx-eah"/>
                                 <exclude reference="eUA-Yt-mWA"/>
+                                <exclude reference="CQu-37-Ex9"/>
+                                <exclude reference="d5f-QH-iaR"/>
+                                <exclude reference="1Tp-Ao-1co"/>
+                                <exclude reference="5JC-Z6-JJI"/>
+                                <exclude reference="8F3-Yk-Wti"/>
+                                <exclude reference="Aoz-ye-afe"/>
+                                <exclude reference="QDd-j5-Ikb"/>
+                                <exclude reference="QPc-tN-Zod"/>
+                                <exclude reference="iUc-co-SXO"/>
+                                <exclude reference="Ag9-zj-CHc"/>
+                                <exclude reference="Ejw-Lp-WNG"/>
+                                <exclude reference="rYn-2x-Mto"/>
+                                <exclude reference="Vbm-l0-Z6L"/>
+                                <exclude reference="bpA-l2-img"/>
+                                <exclude reference="qcG-K1-2ei"/>
                                 <exclude reference="9Fg-d1-Zis"/>
                                 <exclude reference="cPv-jj-RgL"/>
                                 <exclude reference="zHl-Nb-XhO"/>
@@ -459,12 +459,12 @@
                         </variation>
                         <variation key="heightClass=compact">
                             <mask key="constraints">
-                                <include reference="Ejw-Lp-WNG"/>
-                                <include reference="Vbm-l0-Z6L"/>
                                 <include reference="5JC-Z6-JJI"/>
                                 <include reference="8F3-Yk-Wti"/>
                                 <include reference="Aoz-ye-afe"/>
                                 <include reference="QPc-tN-Zod"/>
+                                <include reference="Ejw-Lp-WNG"/>
+                                <include reference="Vbm-l0-Z6L"/>
                                 <include reference="cPv-jj-RgL"/>
                                 <include reference="zHl-Nb-XhO"/>
                             </mask>
@@ -477,15 +477,6 @@
                                 <include reference="vsq-sE-Rkn"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="Ag9-zj-CHc"/>
-                                <include reference="rYn-2x-Mto"/>
-                                <include reference="bpA-l2-img"/>
-                                <include reference="qcG-K1-2ei"/>
-                                <include reference="1Tp-Ao-1co"/>
-                                <include reference="QDd-j5-Ikb"/>
-                                <include reference="iUc-co-SXO"/>
-                                <include reference="CQu-37-Ex9"/>
-                                <include reference="d5f-QH-iaR"/>
                                 <include reference="TXU-98-XVe"/>
                                 <include reference="VMt-Uq-KOQ"/>
                                 <include reference="ebt-EL-e4c"/>
@@ -493,6 +484,15 @@
                                 <include reference="u4O-V3-Zk6"/>
                                 <include reference="StK-zx-eah"/>
                                 <include reference="eUA-Yt-mWA"/>
+                                <include reference="CQu-37-Ex9"/>
+                                <include reference="d5f-QH-iaR"/>
+                                <include reference="1Tp-Ao-1co"/>
+                                <include reference="QDd-j5-Ikb"/>
+                                <include reference="iUc-co-SXO"/>
+                                <include reference="Ag9-zj-CHc"/>
+                                <include reference="rYn-2x-Mto"/>
+                                <include reference="bpA-l2-img"/>
+                                <include reference="qcG-K1-2ei"/>
                                 <include reference="9Fg-d1-Zis"/>
                             </mask>
                         </variation>
@@ -504,6 +504,7 @@
                         <outlet property="Channel2Aussehen" destination="vsq-sE-Rkn" id="C1Q-Rx-eCV"/>
                         <outlet property="Graph" destination="ZVC-zm-AS7" id="CoD-hL-rRA"/>
                         <outlet property="SliderAussehen" destination="6dd-SP-oCG" id="60G-7E-DyD"/>
+                        <outlet property="SwitchAussehen" destination="FGe-Lc-A4J" id="d7v-xa-TOs"/>
                         <outlet property="SwitschAussehn" destination="FGe-Lc-A4J" id="Opf-Md-eAf"/>
                         <outlet property="VerbundenmitLabel" destination="kbG-I6-49t" id="XRi-U4-lok"/>
                     </connections>

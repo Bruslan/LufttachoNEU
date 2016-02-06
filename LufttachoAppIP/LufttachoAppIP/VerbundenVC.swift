@@ -14,12 +14,18 @@ var XVariablenString = [String]()
 
 class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate, ChartViewDelegate {
 
+    @IBOutlet weak var SwitchAussehen: UISwitch!
     @IBOutlet weak var SliderAussehen: UISlider!
     @IBOutlet weak var VerbundenmitLabel: UILabel!
     @IBOutlet weak var Graph: LineChartView!
     var Characters = [CBCharacteristic]()
     var Entry : ChartDataEntry = ChartDataEntry()
     var Schalter = true
+    var yVals = [ChartDataEntry]()
+    var firsttime = true
+    var DoubleDaten = Double()
+    
+    var dataFlow : LineChartData = LineChartData()
     
     @IBOutlet weak var SwitschAussehn: UISwitch!
     var xStelle : Int = 0
@@ -38,15 +44,15 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
         
             
             manager.delegate = self
-            
+            SwitchAussehen.on = false
+        
             
         
             
             
             
             
-            
-            xStelle = 0
+        
             
             
           // Beispiel Chart äußeres
@@ -74,6 +80,9 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
             yAxis.drawGridLinesEnabled = false
             yAxis.axisLineColor = UIColor.grayColor()
             yAxis.removeAllLimitLines()
+            yAxis.axisMaximum = 20
+            yAxis.axisMinimum = -20
+        
             Graph.rightAxis.enabled =  false
         
             Graph.legend.enabled = false
@@ -82,10 +91,8 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
             
             yAxis.drawLimitLinesBehindDataEnabled = true
         
-            
+
         
-      
-            Graph.invalidateIntrinsicContentSize()
             Graph.backgroundColor? = UIColor.clearColor()
             Graph.gridBackgroundColor = UIColor.clearColor()
             Graph.xAxis.gridColor = UIColor.grayColor()
@@ -108,6 +115,8 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
     
     
     @IBAction func Switsh(sender: AnyObject) {
+       
+        
         
         
         
@@ -145,44 +154,49 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
     
     func addEntry()
     {
+  
         let Daten : LineChartData? = Graph.lineData
+
         if Daten != nil
         {
+            
+            
+            
+            
+            
+            
             var set : LineChartDataSet? = Daten?.getDataSetByIndex(0) as? LineChartDataSet
       
             
-                if set == nil
-                {
+            if firsttime == true{
             set = createSet()
                 Daten?.addDataSet(set)
                     
             }
             
-            for var Index = 0; Index < 4; Index++
-            {
-            
+           
                
             Daten?.addXValue("") //XVariablenString[Index]
                 
             if Schalter == true
                 
             {
-            Entry = ChartDataEntry(value: Channel1Double[Index], xIndex: xStelle )
+            Entry = ChartDataEntry(value: Channel1Double[0], xIndex: xStelle )
                 }
                     
             else{
                 
-            Entry = ChartDataEntry(value: Channel2Double[Index], xIndex: xStelle )
+            Entry = ChartDataEntry(value: Channel2Double[0], xIndex: xStelle )
                 
                 }
-                var EntryArray = [ChartDataEntry]()
+               
    
             Daten?.addEntry(Entry, dataSetIndex: 0)
                 
             print("Entry : \(Entry)")
             xStelle += 1
             
-            }
+            
 
 
             
@@ -192,20 +206,26 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
             Graph.notifyDataSetChanged()
             
             Graph.setVisibleXRange(minXRange: range, maxXRange: range)
+          
             
+            
+            if SwitchAussehen.on
+            {
             Graph.moveViewToX((Daten?.xValCount)! - Int(range + 1))
-            
+            //Graph.moveViewToX((Daten?.xValCount)! - 1)
+            }
             
         }
     }
+
     
+
 
     
     func createSet() -> LineChartDataSet
     {
         let set : LineChartDataSet = LineChartDataSet(yVals: nil, label: "Daten")
-        
-        //set.axisDependency = .Left
+              //set.axisDependency = .Left
         set.axisDependency = .Left
         set.drawCubicEnabled = true
         set.drawCirclesEnabled = false
@@ -217,7 +237,7 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
         set.lineWidth = 2
         set.fillAlpha = 65/255
         set.drawCircleHoleEnabled = true
-        set.cubicIntensity = 0.1
+       // set.cubicIntensity = 0.1
         
         
         return set
@@ -345,7 +365,9 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
                 
                     // Die Eingehende Daten werden in dieser Funktion Umgewandelt und in Arrays (Channel1 und Channel2) aufgeteilt!
                     Command(Value)
+                    
                     addEntry()
+                    
                     
                 }
                 
@@ -367,7 +389,7 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
                 
                 Beschriften()
                 
-                Graph.animate(xAxisDuration: 0.01, yAxisDuration: 0)
+               // Graph.animate(xAxisDuration: 0.01, yAxisDuration: 0)
             }
         }
     }
