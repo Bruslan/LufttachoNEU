@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -405,7 +405,9 @@
                             <constraint firstItem="FGe-Lc-A4J" firstAttribute="top" secondItem="fTU-WT-0XI" secondAttribute="bottom" constant="40" id="CQu-37-Ex9"/>
                             <constraint firstItem="42R-QB-dtq" firstAttribute="centerX" secondItem="6dd-SP-oCG" secondAttribute="centerX" id="E8h-ab-4od"/>
                             <constraint firstItem="Xkz-PV-Oft" firstAttribute="leading" secondItem="3sy-cQ-Y2g" secondAttribute="leadingMargin" constant="2" id="Ejw-Lp-WNG"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="ZVC-zm-AS7" secondAttribute="leading" id="QDd-j5-Ikb"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="ZVC-zm-AS7" secondAttribute="leading" id="QDd-j5-Ikb">
+                                <variation key="heightClass=regular-widthClass=compact" constant="16"/>
+                            </constraint>
                             <constraint firstItem="ZVC-zm-AS7" firstAttribute="top" secondItem="3sy-cQ-Y2g" secondAttribute="top" id="QPc-tN-Zod"/>
                             <constraint firstItem="vsq-sE-Rkn" firstAttribute="top" secondItem="42R-QB-dtq" secondAttribute="bottom" constant="20" id="StK-zx-eah"/>
                             <constraint firstItem="6dd-SP-oCG" firstAttribute="top" secondItem="ZVC-zm-AS7" secondAttribute="bottom" constant="8" id="TXU-98-XVe"/>
@@ -414,9 +416,13 @@
                             <constraint firstItem="kbG-I6-49t" firstAttribute="top" secondItem="fTU-WT-0XI" secondAttribute="bottom" constant="50" id="bpA-l2-img"/>
                             <constraint firstItem="sbD-PP-cSA" firstAttribute="top" secondItem="Xkz-PV-Oft" secondAttribute="bottom" constant="2" id="cPv-jj-RgL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="FGe-Lc-A4J" secondAttribute="trailing" constant="-4" id="d5f-QH-iaR"/>
-                            <constraint firstItem="vsq-sE-Rkn" firstAttribute="centerX" secondItem="ZVC-zm-AS7" secondAttribute="centerX" id="eUA-Yt-mWA"/>
+                            <constraint firstItem="vsq-sE-Rkn" firstAttribute="centerX" secondItem="ZVC-zm-AS7" secondAttribute="centerX" id="eUA-Yt-mWA">
+                                <variation key="heightClass=regular-widthClass=compact" constant="1.5"/>
+                            </constraint>
                             <constraint firstAttribute="trailingMargin" secondItem="6dd-SP-oCG" secondAttribute="trailing" id="ebt-EL-e4c"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ZVC-zm-AS7" secondAttribute="trailing" id="iUc-co-SXO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZVC-zm-AS7" secondAttribute="trailing" id="iUc-co-SXO">
+                                <variation key="heightClass=regular-widthClass=compact" constant="-13"/>
+                            </constraint>
                             <constraint firstAttribute="leadingMargin" secondItem="kbG-I6-49t" secondAttribute="leading" id="qcG-K1-2ei"/>
                             <constraint firstItem="Xkz-PV-Oft" firstAttribute="leading" secondItem="3sy-cQ-Y2g" secondAttribute="leadingMargin" constant="-12" id="rYn-2x-Mto"/>
                             <constraint firstItem="42R-QB-dtq" firstAttribute="top" secondItem="6dd-SP-oCG" secondAttribute="bottom" constant="30" id="u4O-V3-Zk6"/>

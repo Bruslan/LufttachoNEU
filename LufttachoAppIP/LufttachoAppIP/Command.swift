@@ -17,6 +17,7 @@ var XVariablegerundet  = [Double]()
 
 var Channel1Double = [Double]()
 var Channel2Double = [Double]()
+var Channel1Wert : Double = Double()
 
 
 
@@ -88,7 +89,7 @@ func Command (data: NSData)
         
         var double2 = Double(Channel1[i])
         double2 = double2/600
-        var double3 = Double(Channel2[i])
+        let double3 = Double(Channel2[i])
         // Runde double2 auf 2 stellen nachm Komma!
         let double = Double(round(double2*100)/100)
         let doubleCh2 = Double(round(double3*100)/100)
@@ -96,6 +97,18 @@ func Command (data: NSData)
         //adde die umgewandelte Zahlen in ein Array
         Channel1Double.insert(double, atIndex: i)
         Channel2Double.insert(doubleCh2, atIndex: i)
+        
+        Channel1Wert = double
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         // Xvariable, welche unsere Zeit in ms angibt
         

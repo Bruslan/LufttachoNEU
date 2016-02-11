@@ -22,14 +22,18 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
     var Entry : ChartDataEntry = ChartDataEntry()
     var Schalter = true
     var yVals = [ChartDataEntry]()
+    var yVals2 = [ChartDataEntry]()
+    var yVals3 = [ChartDataEntry]()
+    var xVals = [String]()
     var firsttime = true
     var DoubleDaten = Double()
-    
+    var dataChannel1 : LineChartData = LineChartData()
+    var dataChannel2 : LineChartData = LineChartData()
     var dataFlow : LineChartData = LineChartData()
     
     @IBOutlet weak var SwitschAussehn: UISwitch!
     var xStelle : Int = 0
-    var range : CGFloat = 10
+    var range : CGFloat = 50
     @IBAction func Disconnect(sender: AnyObject) {
         
         manager.cancelPeripheralConnection(PeripheralGerät!)
@@ -40,11 +44,11 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
     override func viewDidLoad() {
         
             super.viewDidLoad()
-        Channel1Aussehen.enabled = false
+            Channel1Aussehen.enabled = false
         
             
             manager.delegate = self
-            SwitchAussehen.on = false
+            SwitchAussehen.on = true
         
             
         
@@ -66,22 +70,24 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
             Graph.setScaleEnabled(true)
             Graph.pinchZoomEnabled = true
             Graph.drawGridBackgroundEnabled = false
-            Graph.maxVisibleValueCount = Int(range)  //es war auf 60
+        
+            Graph.maxVisibleValueCount = 1//Int(range)  //es war auf 60
             let xAxis : ChartXAxis = Graph.xAxis
             xAxis.drawGridLinesEnabled = false
-            xAxis.spaceBetweenLabels = 1
+           // xAxis.spaceBetweenLabels = 60
+        
         
         
             
             let yAxis : ChartYAxis = Graph.leftAxis
-            yAxis.setLabelCount(6, force: true)
-            yAxis.startAtZeroEnabled = false
+            //yAxis.setLabelCount(0, force: true)
+            yAxis.startAtZeroEnabled = true
             
             yAxis.drawGridLinesEnabled = false
             yAxis.axisLineColor = UIColor.grayColor()
             yAxis.removeAllLimitLines()
-            yAxis.axisMaximum = 20
-            yAxis.axisMinimum = -20
+
+
         
             Graph.rightAxis.enabled =  false
         
@@ -133,9 +139,9 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
      let Slidervalue = SliderAussehen.value
         
         range = 1 + CGFloat(Slidervalue * 100)
-        let Daten : LineChartData? = Graph.lineData
-        let set = createSet()
-        Daten?.addDataSet(set)
+        //let Daten : LineChartData? = Graph.lineData
+        //let set = createSet()
+        //Daten?.addDataSet(set)
         Graph.notifyDataSetChanged()
         
         Graph.setVisibleXRange(minXRange: range, maxXRange: range)
@@ -191,7 +197,7 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
                 }
                
    
-            Daten?.addEntry(Entry, dataSetIndex: 0)
+           Daten?.addEntry(Entry, dataSetIndex: 0)
                 
             print("Entry : \(Entry)")
             xStelle += 1
@@ -222,27 +228,7 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
 
 
     
-    func createSet() -> LineChartDataSet
-    {
-        let set : LineChartDataSet = LineChartDataSet(yVals: nil, label: "Daten")
-              //set.axisDependency = .Left
-        set.axisDependency = .Left
-        set.drawCubicEnabled = true
-        set.drawCirclesEnabled = false
-        
-        set.setColor(UIColor.grayColor().colorWithAlphaComponent(0.5))
-        set.setCircleColor(UIColor.whiteColor())
-       // set.circleRadius = 0
-        
-        set.lineWidth = 2
-        set.fillAlpha = 65/255
-        set.drawCircleHoleEnabled = true
-       // set.cubicIntensity = 0.1
-        
-        
-        return set
-        
-    }
+
     
     override func viewDidAppear(animated: Bool) {
         manager.delegate = self
@@ -346,53 +332,7 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
     // Immer wenn neue Daten eingehen, wird das alte Array gelöscht, und mit neuen Daten überspielt!
     
     
-    func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
-        if let Value = characteristic.value
-        {
-            if characteristic.UUID == CBUUID(string:"00000002-0000-1000-8000-008025000000"){
-            
-                print("Raw NSData Value :\(Value)") //
 
-                
-                // Nur Vollständige Daten annehmen!!!
-                
-                if Value.length == 20
-                {
-                    
-                Channel1Double.removeAll()
-                XVariablegerundet.removeAll()
-                XVariablenString.removeAll()
-                
-                    // Die Eingehende Daten werden in dieser Funktion Umgewandelt und in Arrays (Channel1 und Channel2) aufgeteilt!
-                    Command(Value)
-                    
-                    addEntry()
-                    
-                    
-                }
-                
- 
-                
-               
-                print("Channel1 : \(Channel1)")
-                print("Channel2 : \(Channel2)")
-                print("XVariable für Channel 1 : \(XVariablenString)")
-                print("Channel 1 in Double: \(Channel1Double)")
-                print("Settings : \(Command1)")
-                print("Control: \(Control)")
-                
-                print("////////////////////////////////////////////")
-                print("////////////////////////////////////////////")
-                print("////////////////////////////////////////////")
-                
-                
-                
-                Beschriften()
-                
-               // Graph.animate(xAxisDuration: 0.01, yAxisDuration: 0)
-            }
-        }
-    }
     
 
     
@@ -408,7 +348,11 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
         Schalter = false
         Channel2Aussehen.enabled = false
         Channel1Aussehen.enabled = true
-        
+        Graph.leftAxis.customAxisMax = 10
+        Graph.leftAxis.customAxisMin = -10
+        Graph.notifyDataSetChanged()
+    
+         Graph.data = dataChannel2
         
     }
     
@@ -420,8 +364,10 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
         Schalter = true
         Channel1Aussehen.enabled = false
         Channel2Aussehen.enabled = true
-        
-        
+        Graph.leftAxis.customAxisMax = 0.7
+        Graph.leftAxis.customAxisMin = -0.7
+        Graph.notifyDataSetChanged()
+         Graph.data = dataChannel1
     }
     
     
@@ -447,10 +393,176 @@ class VerbundenVC: UIViewController, CBCentralManagerDelegate, CBPeripheralDeleg
     
     
     
+    func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
+        if let Value = characteristic.value
+        {
+            if characteristic.UUID == CBUUID(string:"00000002-0000-1000-8000-008025000000"){
+                
+                print("Raw NSData Value :\(Value)") //
+                
+                
+                // Nur Vollständige Daten annehmen!!!
+                
+                if Value.length == 20
+                {
+                    
+                    Channel1Double.removeAll()
+                    XVariablegerundet.removeAll()
+                    XVariablenString.removeAll()
+                    
+                    // Die Eingehende Daten werden in dieser Funktion Umgewandelt und in Arrays (Channel1 und Channel2) aufgeteilt!
+                    Command(Value)
+                    
+                    //addEntry()
+                    setData()
+                    
+                }
+                
+                
+                
+                
+                print("Channel1 : \(Channel1)")
+                print("Channel2 : \(Channel2)")
+                print("XVariable für Channel 1 : \(XVariablenString)")
+                print("Channel 1 in Double: \(Channel1Double)")
+                print("Settings : \(Command1)")
+                print("Control: \(Control)")
+                
+                print("////////////////////////////////////////////")
+                print("////////////////////////////////////////////")
+                print("////////////////////////////////////////////")
+                
+                
+                
+                Beschriften()
+                
+                
+            }
+        }
+    }
     
     
     
+    
+    
+    func setData()
+    {
         
+        
+        xVals.append("")
+        
+        let val1 = Channel1Wert
+        let val2 = Channel2Double[0]
+        
+        yVals.append(ChartDataEntry(value: val1, xIndex: xStelle))
+        yVals2.append(ChartDataEntry(value: val2, xIndex: xStelle))
+        
+        xStelle += 1
+        print(xStelle)
+        
+
+            let set1 : LineChartDataSet = LineChartDataSet(yVals: yVals, label: "Flow")
+            set1.axisDependency = .Left
+            //set1.drawCubicEnabled = true
+            set1.drawCirclesEnabled = false
+            
+            set1.setColor(UIColor.grayColor().colorWithAlphaComponent(0.5))
+            // set1.setCircleColor(UIColor.whiteColor())
+            // set.circleRadius = 0
+            
+            set1.lineWidth = 2
+            set1.fillAlpha = 65/255
+            //set1.drawCircleHoleEnabled = true
+            
+            let set2 : LineChartDataSet = LineChartDataSet(yVals: yVals2, label: "Dataset2")
+            set2.axisDependency = .Left
+            //set2.drawCubicEnabled = true
+            set2.drawCirclesEnabled = false
+            
+            set2.setColor(UIColor.grayColor().colorWithAlphaComponent(0.5))
+            set2.setCircleColor(UIColor.whiteColor())
+            // set.circleRadius = 0
+            
+            set2.lineWidth = 2
+            set2.fillAlpha = 65/255
+            //set2.drawCircleHoleEnabled = true
+            
+            var dataSets: [LineChartDataSet] = [LineChartDataSet]()
+            
+            dataSets.append(set1)
+            dataSets.append(set2)
+            
+            
+            dataChannel1 = LineChartData(xVals: xVals, dataSet: dataSets[0])
+            dataChannel2 = LineChartData(xVals: xVals, dataSet: dataSets[1])
+            
+            
+        
+        
+            
+        
+        
+
+        
+        
+
+     
+        Graph.setVisibleXRange(minXRange: range, maxXRange: range)
+        Graph.setVisibleXRangeMinimum(range)
+     
+        Graph.leftAxis.startAtZeroEnabled = true
+
+        
+        
+        if Schalter == true
+        {
+        Graph.data = dataChannel1
+            Graph.leftAxis.customAxisMax = 0.7
+            Graph.leftAxis.customAxisMin = -0.7
+        }
+        else
+        {
+        Graph.data = dataChannel2
+
+        }
+
+    
+        //Graph.setVisibleXRangeMaximum()
+     
+        if xStelle == 150
+        {
+        self.SwitschAussehn.on = false
+        }
+        if SwitchAussehen.on
+        {
+            Graph.moveViewToX(xStelle)
+        }
+        
+    
+    }
+    
+    func createSet() -> LineChartDataSet
+    {
+        let set : LineChartDataSet = LineChartDataSet(yVals: nil, label: "Daten")
+    
+        set.axisDependency = .Left
+        set.drawCubicEnabled = true
+        set.drawCirclesEnabled = false
+        
+        set.setColor(UIColor.grayColor().colorWithAlphaComponent(0.5))
+        set.setCircleColor(UIColor.whiteColor())
+        // set.circleRadius = 0
+        
+        set.lineWidth = 2
+        set.fillAlpha = 65/255
+        set.drawCircleHoleEnabled = true
+        // set.cubicIntensity = 0.1
+        
+        
+        return set
+        
+    }
+    
         
     
     
